@@ -6,11 +6,11 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 
 const routes: Routes = [
-  {
-    path:"",
-    redirectTo:"/courses",
-    pathMatch:'full'
-  },
+  // {
+  //   path:"",
+  //   redirectTo:"/courses",
+  //   pathMatch:'full'
+  // },
   {
     path:"courses",
     loadChildren:()=>import('./courses/courses.module').then(m=>m.CoursesModule)
@@ -21,10 +21,10 @@ const routes: Routes = [
   {
     path:'about',component:AboutComponent
   },
-  {
-    path:"**",
-    component:PageNotFoundComponent
-  },
+  // {
+  //   path:"**",
+  //   component:PageNotFoundComponent
+  // },
 ];
 
 @NgModule({

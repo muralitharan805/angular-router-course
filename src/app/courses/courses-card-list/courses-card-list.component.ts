@@ -23,8 +23,15 @@ export class CoursesCardListComponent implements OnInit {
 
   ngOnInit() {
 
+    
   }
 
+  ngAfterContentChecked(): void {
+    //Called after every check of the component's or directive's content.
+    //Add 'implements AfterContentChecked' to the class.
+    console.log('courses ',this.courses);
+    
+  }
     editCourse(course: Course) {
 
         const dialogConfig = new MatDialogConfig();
