@@ -5,6 +5,7 @@ import { CourseComponent } from './course/course.component';
 import { HomeComponent } from './home/home.component';
 import { LessonDetailComponent } from './lesson/lesson-detail.component';
 import { LessonsListComponent } from './lessons-list/lessons-list.component';
+import { LessonDetailsResolverService } from './services/lesson-details-resolver.service';
 import { LessonResolverService } from './services/lesson.resolver.service';
 
 
@@ -26,7 +27,10 @@ const routes: Routes = [
       },
       {
         path:"lessons/:lessonSeqNo",
-        component:LessonDetailComponent
+        component:LessonDetailComponent,
+        resolve:{
+          lesson:LessonDetailsResolverService
+        }
       }
     ],
     resolve:{
@@ -42,7 +46,8 @@ const routes: Routes = [
   exports: [RouterModule],
   providers: [
     CourseResolver,
-    LessonResolverService
+    LessonResolverService,
+    LessonDetailsResolverService
   ]
 })
 export class CoursesRoutingModule {
