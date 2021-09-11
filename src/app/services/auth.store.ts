@@ -20,7 +20,17 @@ export class AuthStore {
 
     constructor(private http: HttpClient) {
 
-        this.isLoggedIn$ = this.user$.pipe(map(user => !!user));
+        this.isLoggedIn$ = this.user$.pipe(
+            tap(
+             (isLoggedIn)=> {
+
+                 
+              console.log('isLoggedIn ',isLoggedIn)
+              console.log('isLoggedIn!! ',!!isLoggedIn)
+
+             }
+            ),
+            map(user => !!user));
 
         this.isLoggedOut$ = this.isLoggedIn$.pipe(map(loggedIn => !loggedIn));
 

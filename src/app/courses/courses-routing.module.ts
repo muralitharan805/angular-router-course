@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuardService } from '../services/auth-guard.service';
 import { CourseResolver } from './course.resolver';
 import { CourseComponent } from './course/course.component';
 import { HomeComponent } from './home/home.component';
@@ -17,6 +18,7 @@ const routes: Routes = [
   },{
     path:":courseUrl",
     component:CourseComponent,
+    canActivate:[AuthGuardService],
     children:[
       {
         path:"",
@@ -47,7 +49,8 @@ const routes: Routes = [
   providers: [
     CourseResolver,
     LessonResolverService,
-    LessonDetailsResolverService
+    LessonDetailsResolverService,
+    AuthGuardService
   ]
 })
 export class CoursesRoutingModule {
