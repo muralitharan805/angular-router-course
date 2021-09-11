@@ -3,6 +3,7 @@ import {Routes, RouterModule, PreloadAllModules, UrlSerializer} from '@angular/r
 import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { CanLoadService } from './services/can-load.service';
 
 
 const routes: Routes = [
@@ -13,7 +14,8 @@ const routes: Routes = [
   // },
   {
     path:"courses",
-    loadChildren:()=>import('./courses/courses.module').then(m=>m.CoursesModule)
+    loadChildren:()=>import('./courses/courses.module').then(m=>m.CoursesModule),
+    canLoad:[CanLoadService]
   },
   {
     path:'login',component:LoginComponent
@@ -33,7 +35,7 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
   providers: [
-
+    CanLoadService
   ]
 })
 export class AppRoutingModule {
