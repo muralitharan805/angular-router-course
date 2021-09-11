@@ -28,6 +28,12 @@ export class CourseComponent implements OnInit {
     }
 
 
+    confirmExit(){
+        confirm(`Are You Sure You Want To Exit `)
+        return false
+    }
+
+
 }
 
 
