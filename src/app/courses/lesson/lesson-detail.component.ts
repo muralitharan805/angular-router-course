@@ -13,7 +13,7 @@ export class LessonDetailComponent implements OnInit {
 
   lesson$: Observable<LessonDetail>;
 
-  constructor(private route:ActivatedRoute) {
+  constructor(private route:ActivatedRoute,private router:Router) {
 
     console.log("Created LessonDetailComponent...");
 
@@ -23,11 +23,21 @@ export class LessonDetailComponent implements OnInit {
     // const lesson = new BehaviorSubject<LessonDetail>(null)
     // this.lesson$ = lesson.asObservable()
 
+    // this.lesson$ = this.route.snapshot.data['lesson'];
   
     this.lesson$ = this.route.data.pipe(map(data => data["lesson"]));
 
   }
 
 
+  next(ele:any){
+    this.router.navigate(['lessons',ele.seqNo+1], {relativeTo: this.route.parent } )
 
+  }
+
+
+  previous(ele:any){
+
+    this.router.navigate(['lessons',ele.seqNo-1], {relativeTo: this.route.parent } )
+  }
 }
