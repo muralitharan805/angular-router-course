@@ -3,6 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { CourseResolver } from './course.resolver';
 import { CourseComponent } from './course/course.component';
 import { HomeComponent } from './home/home.component';
+import { LessonDetailComponent } from './lesson/lesson-detail.component';
+import { LessonsListComponent } from './lessons-list/lessons-list.component';
+import { LessonResolverService } from './services/lesson.resolver.service';
 
 
 const routes: Routes = [
@@ -13,6 +16,19 @@ const routes: Routes = [
   },{
     path:":courseUrl",
     component:CourseComponent,
+    children:[
+      {
+        path:"",
+        component:LessonsListComponent,
+        resolve:{
+          lessons:LessonResolverService
+        }
+      },
+      {
+        path:"lessons/:lessonSeqNo",
+        component:LessonDetailComponent
+      }
+    ],
     resolve:{
       courses:CourseResolver
     }
@@ -25,7 +41,8 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
   providers: [
-    CourseResolver
+    CourseResolver,
+    LessonResolverService
   ]
 })
 export class CoursesRoutingModule {
