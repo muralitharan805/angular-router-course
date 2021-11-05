@@ -12,7 +12,8 @@ const routes: Routes = [
   {
     path:"about",
     component:AboutComponent
-  }
+  },
+  { path: 'demo_module2', loadChildren: () => import('./demo-module2/demo-module2.module').then(m => m.DemoModule2Module) }
 ];
 
 @NgModule({
