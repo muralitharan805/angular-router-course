@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Course, sortCoursesBySeqNo} from '../model/course';
 import {Observable} from 'rxjs';
 import {CoursesService} from "../services/courses.service";
-import {map} from "rxjs/operators";
+import {map, tap} from "rxjs/operators";
 import {LoadingService} from "../../shared/loading/loading.service";
 
 
@@ -42,6 +42,13 @@ export class HomeComponent implements OnInit {
   filterByCategory(courses$: Observable<Course[]>, category:string) {
     return this.loading.showLoaderUntilCompleted(courses$)
       .pipe(
+        tap(ele=>{
+          console.log(
+          "Value ",
+          ele.filter(course => course.category == category).sort(sortCoursesBySeqNo)
+          );
+          
+        }),
         map(courses => courses.filter(course => course.category == category).sort(sortCoursesBySeqNo))
       );
   }

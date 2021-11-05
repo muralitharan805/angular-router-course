@@ -15,7 +15,7 @@
 
     <mat-card-actions class="course-actions">
 
-        <button mat-button class="mat-raised-button mat-primary">
+        <button mat-button [routerLink]="[course.url]" routerLinkActive="router-link-active"  class="mat-raised-button mat-primary">
             VIEW COURSE
         </button>
 
