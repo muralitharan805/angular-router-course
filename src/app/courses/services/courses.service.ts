@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable,of} from 'rxjs';
-import {map, shareReplay} from 'rxjs/operators';
+import {map, shareReplay, tap} from 'rxjs/operators';
 import {Course} from "../model/course";
 import {LessonDetail} from "../model/lesson-detail";
 import {LessonSummary} from "../model/lesson-summary";
@@ -17,6 +17,10 @@ export class CoursesService {
     loadCourseByUrl(courseUrl:string) {
        return this.http.get<Course>(`/api/courses/${courseUrl}`)
             .pipe(
+                tap(ele=>{
+                    console.log("loadCourseByUrl ",ele);
+                    
+                }),
               shareReplay()
             );
     }
@@ -29,6 +33,10 @@ export class CoursesService {
             }
         })
             .pipe(
+                tap(ele=>{
+                    console.log("loadAllCourseLessonsSummary ",ele);
+                    
+                }),
                 map(res => res["payload"]),
                 shareReplay()
             );

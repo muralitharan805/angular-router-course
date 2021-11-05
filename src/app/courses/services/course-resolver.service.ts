@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Course } from '../courses/model/course';
-import { CoursesService } from '../courses/services/courses.service';
+import { first } from 'rxjs/operators';
+import { Course } from '../model/course';
+import { CoursesService } from './courses.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,8 @@ export class CourseResolverService implements Resolve<Course> {
     // throw new Error('Method not implemented.');
 
     const courseUrl = route.paramMap.get("courseUrl")
-    return this.courses.loadCourseByUrl(courseUrl)
+    return this.courses.loadCourseByUrl(courseUrl).pipe(
+      first()
+    )
   }
 }

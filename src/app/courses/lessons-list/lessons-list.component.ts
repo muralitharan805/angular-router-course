@@ -19,6 +19,8 @@ export class LessonsListComponent implements OnInit {
 
     this.lessons = this.route.snapshot.data["lessons"];
 
+    console.log("lessons ",this.lessons);
+    
   }
 
 }
