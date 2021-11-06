@@ -24,6 +24,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatMomentDateModule} from "@angular/material-moment-adapter";
 import {SharedModule} from "../shared/shared.module";
 import {ReactiveFormsModule} from "@angular/forms";
+import { AuthGuard } from '../services/auth.guard';
 
 
 @NgModule({
@@ -56,7 +57,6 @@ import {ReactiveFormsModule} from "@angular/forms";
     ReactiveFormsModule,
   ],
   providers: [
-    CoursesService
-  ]
+    CoursesService,  ]
 })
 export class CoursesModule { }

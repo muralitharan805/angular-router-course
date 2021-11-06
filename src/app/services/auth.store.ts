@@ -19,8 +19,19 @@ export class AuthStore {
     isLoggedOut$ : Observable<boolean>;
 
     constructor(private http: HttpClient) {
+        console.log("AuthStore constructor ");
+        
+        this.isLoggedIn$ = this.user$.pipe(
+            tap(
+                ele=>{
+                    console.log("AuthStore constructor isLoggedIn",ele);
+                    console.log("AuthStore constructor isLoggedIn",!!ele);
 
-        this.isLoggedIn$ = this.user$.pipe(map(user => !!user));
+                    
+                    
+                }
+            ),
+            map(user => !!user));
 
         this.isLoggedOut$ = this.isLoggedIn$.pipe(map(loggedIn => !loggedIn));
 
