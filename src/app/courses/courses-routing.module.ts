@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '../services/auth.guard';
+import { Conformexit } from '../services/conformexit';
 import { CourseComponent } from './course/course.component';
 import { HomeComponent } from './home/home.component';
 import { LessonDetailComponent } from './lesson/lesson-detail.component';
@@ -20,6 +21,8 @@ const routes: Routes = [
     path:":courseUrl",
     component:CourseComponent,
     canActivate:[AuthGuard],
+    canActivateChild:[AuthGuard],
+    canDeactivate:[Conformexit],
     children:[
       {
         path:"",
@@ -52,7 +55,8 @@ const routes: Routes = [
     CourseResolverService,
     LessonResolver,
     LessonDetailService,
-    AuthGuard
+    AuthGuard,
+    Conformexit
   ]
 })
 export class CoursesRoutingModule {
